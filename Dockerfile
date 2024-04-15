@@ -137,6 +137,13 @@ RUN echo "$VERSION_TAG" > /version_tag.txt
 COPY ./scripts /scripts
 RUN chmod +x /scripts/*
 # Run
+
+# Copiar nginx.conf al contenedor
+COPY nginx.conf /etc/nginx/nginx.conf
+
+# Exponer puerto 80 para Nginx
+EXPOSE 80
+
 ENTRYPOINT ["/scripts/docker-entrypoint.sh"]
 
 
@@ -218,9 +225,3 @@ COPY --from=app_cpu_x $VIRTUAL_ENV $VIRTUAL_ENV
 RUN echo "CPU Extended" > /variant.txt
 ENV EXTRA_LAUNCH_ARGS=""
 CMD ["python3", "/app/server.py"]
-
-# Copiar nginx.conf al contenedor
-FROM nginx:alpine
-COPY nginx.conf /etc/nginx/nginx.conf
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
