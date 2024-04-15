@@ -121,7 +121,7 @@ ENV VIRTUAL_ENV=/venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 # Finalise app setup
 WORKDIR /app
-EXPOSE 7860
+EXPOSE 80
 EXPOSE 5000
 EXPOSE 5005
 # Required for Python print statements to appear in logs
