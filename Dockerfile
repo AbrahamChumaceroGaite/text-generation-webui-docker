@@ -220,7 +220,7 @@ ENV EXTRA_LAUNCH_ARGS=""
 CMD ["python3", "/app/server.py"]
 
 # Copiar nginx.conf al contenedor
+FROM nginx:alpine
 COPY nginx.conf /etc/nginx/nginx.conf
-
-# Exponer puerto 80 para Nginx
 EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
